@@ -1,0 +1,4 @@
+
+<a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
+<a href title="This is my tooltip content for:'+row.cover+'" data-toggle="tooltip">'+data+'</a>
+<span title="This is my tooltip content for:'+row.cover+'" data-toggle="tooltip">'+data+'</span>

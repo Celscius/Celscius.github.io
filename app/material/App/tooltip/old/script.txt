@@ -1,0 +1,34 @@
+$(document).ready(function() {
+    /*
+     * First step is to create title attributes for the rows in the table
+     * This isn't needed if the required 'title' attribute is already set in the HTML in the
+     * DOM 
+     */
+    $('#example tbody tr').each( function() {
+        var sTitle;
+        var nTds = $('td', this);
+        var sBrowser = $(nTds[1]).text();
+        var sGrade = $(nTds[4]).text();
+         
+        if ( sGrade == "A" )
+            sTitle =  sBrowser+' will provide a first class (A) level of CSS support.';
+        else if ( sGrade == "C" )
+            sTitle = sBrowser+' will provide a core (C) level of CSS support.';
+        else if ( sGrade == "X" )
+            sTitle = sBrowser+' does not provide CSS support or has a broken implementation. Block CSS.';
+        else
+            sTitle = sBrowser+' will provide an undefined level of CSS support.';
+         
+        this.setAttribute( 'title', sTitle );
+    } );
+     
+    /* Init DataTables */
+    var oTable = $('#example').dataTable();
+     
+    /* Apply the tooltips */
+    oTable.$('tr').tooltip( {
+        "delay": 0,
+        "track": true,
+        "fade": 250
+    } );
+} );
