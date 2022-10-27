@@ -54,26 +54,8 @@
 
   <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
   
-  
-  <!-- table card -->
-  <link rel="stylesheet" type="text/css" href="card/style.css">
- 
-  
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-  <script src="script.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-  
-  <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -89,7 +71,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white  active bg-gradient-primary " href="card.html">
+          <a class="nav-link text-white " href="card.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -105,7 +87,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="tooltip.html">
+          <a class="nav-link text-white " href="tooltip.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -121,7 +103,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="pop_over.html">
+          <a class="nav-link text-white   active bg-gradient-primary" href="pop_over.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -147,7 +129,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
           </ol>
-         
+          
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -183,91 +165,106 @@
     </nav>
     <!-- End Navbar -->
     <!-- start card picture -->
-    
-        <!-- end card picture -->
-              
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-light shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3"></h6>
-              </div>
-            </div>
+   
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <!-- content first table -->
                 <table class="table align-items-center mb-0">
                 <!--HTML tables with student data-->
-<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-</table>
+  <div class="table-responsive">
+  <table id="tableID" >
+        
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Mulai</th>
+        <th>Selesai</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+  </table>
+</div>
   <br />
  
-<script >
-  $(document).ready(function () {
-  //Only needed for the filename of export files.
-  //Normally set in the title tag of your page.
-  document.title = "Card View DataTable";
-  // DataTable initialisation
-  $("#example").DataTable({
-   language: {
-        "paginate": {
-            "previous": "<<",
-            "next": ">>"
-        },
-        "info": "Showing _START_ to _END_ of _TOTAL_",
-        "lengthMenu": "Show _MENU_",
-        "search": "",
-        "searchPlaceholder": "Search..."
-    },
-     "pageLength": 5,
-    ajax: {
+  <script>
+ 
+      /* Initialization of datatables */
+      $(document).ready(function () {
+       // Setup - add a text input to each footer cell
+         $('#tableID thead th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+    });
+        // Paging and other information are
+        // disabled if required, set to true
+        var myTable = $("#tableID").DataTable({
+          //paging: false,
+          responsive: false,
+          sorting:false,
+          autoWidth: false,
+          searching: true,
+          info: false,
+          scrollY:false,
+           "pageLength": 3,
+          "scrollCollapse": true,
+           ajax: {
             url: 'payload.json',
             dataSrc: '',
         },
         columns: [
-            { "data": "image", "orderable": true, "render": function(data, type, row) {return '<img class="img-fluid" style="width:50px, height=50px" src="'+data+'" />'} },
-             {data:'Nama', "orderable": true, "render": function(data, type, row) {return '<div > Nama : '+data+'</div>'} },
-          //  { data: 'Diklat', "width": '10px' },
-            {data:'Mulai', "orderable": true, "render": function(data, type, row) {return '<div > Mulai : '+data+'</div>'} },
-            {data:'Selesai', "orderable": true, "render": function(data, type, row) {return '<div > Selesai : '+data+'</div>'} },
-            
+            {data:'Nama'},
+            //{ data: 'Diklat', "width": '10px' },
+            { data: 'Mulai' },
+            { "data": "Selesai" },
+            { "data": "image", "orderable": true, "render": function(data, type, row) {return '<img class="img-fluid" style="width:100px" src="'+data+'" />'} },
         ],
-    buttons: [
-      "colvis",
-      "copyHtml5",
-      "csvHtml5",
-      "excelHtml5",
-      "pdfHtml5",
-      "print"
-    ],
-    initComplete: function (settings, json) {
-      $(".dt-buttons .btn-group").append(
-        '<a id="cv" class="btn btn-primary" href="#">CARD VIEW</a>'
-      );
-      $("#cv").on("click", function () {
-        if ($("#example").hasClass("card")) {
-          $(".colHeader").remove();
-        } else {
-          var labels = [];
-          $("#example thead th").each(function () {
-            labels.push($(this).text());
-          });
-          $("#example tbody tr").each(function () {
-            $(this)
-              .find("td")
-              .each(function (column) {
-                $("<span class='colHeader'>" + labels[column] + ":</span>").prependTo(
-                  $(this)
-                );
-              });
-          });
-        }
-        $("#example").toggleClass("card");
+         "columnDefs": [
+    { "width": "20%", "targets": 0 }
+  ],drawCallback: function (settings, json) {
+        console.log("as");
+        $('[data-toggle="tooltip"]').tooltip('update');
+        //$("#list-of-product tbody tr > td").tooltip('hide');
+    },
+        initComplete: function () {
+            // Apply the search
+            this.api()
+                .columns()
+                .every(function () {
+                    var that = this;
+ 
+                    $('input', this.header()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+        },
+        });
+ $('#tableID tbody').on('mouseover', 'td', function () {
+    var data = myTable.row( $(this).parents('tr') ).data();
+        console.log(myTable.cell( this ).data()+' = '
+        +'Column : '+myTable.column( $(this).closest('td') ).index()
+        +' Row : '+data.Mulai);
+     
+        $('#tbody').html('<div title="as" data-toggle="tooltip"></div>');
+
+        $("#tableID tbody td").popover({
+        title:data.Diklat,
+        placement : 'top',
+        trigger : 'hover',
+        html : true,
+        content:'<div class="media"><img src="'+data.image+'" class="mr-3" alt="Sample Image" width="100" height="150"><div class="media-body"><h5 class="media-heading">'+data.Nama+'</h5><p>Mulai : '+data.Mulai+'</p><p>Selesai : '+data.Selesai+'</p></div><button>sdsds</button></div>'
+
+    });
+        
+        });
+        $('[data-toggle="popover"]').popover();
+        
+      
+
+
       });
-    }
-  });
-});
-</script>
+  </script>
                 </table>
                 <!-- End content first table -->
               </div>
