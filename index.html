@@ -1,43 +1,14 @@
-<!-- https://stackoverflow.com/questions/31213135/trying-to-implement-google-sign-in-for-a-website-but-the-button-is-not-appearin -->
-<!--
-https://developers.google.com/identity/sign-in/web/sign-in
--->
+<!doctype html>
 <html lang="en">
   <head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="548519775575-es6cb7an0kmbb7n3bmv2tp2brsa69lk2.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-BKjVLb-L.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BiL6QvTF.css">
   </head>
   <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <div id="g_id_onload"
-         data-client_id="61087330908-qp8bj0ci01h9ob2c6saeka1hemllkgb7.apps.googleusercontent.com"
-         data-login_uri="https://celscius.github.io"
-         redirect_uri="https://celscius.github.io/app/"
-         data-auto_prompt="false">
-      </div>
-      <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-callback="OnSuccess"
-         data-logo_alignment="left">
-      </div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      };
-    </script>
+    <div id="root"></div>
   </body>
 </html>
