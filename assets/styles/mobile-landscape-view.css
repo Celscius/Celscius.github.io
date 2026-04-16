@@ -1,0 +1,8 @@
+/* In your globals.css */
+@layer utilities {
+  .mobile-ls-grid {
+    @media (orientation: landscape) and (max-width: 767px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
